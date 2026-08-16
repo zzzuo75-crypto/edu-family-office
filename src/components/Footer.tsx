@@ -95,16 +95,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, 
             © {new Date().getFullYear()} 學涯家辦 Edu Family Office. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <button onClick={() => setLegalPage('privacy')}>
-            隱私政策 Privacy Policy
+            <button onClick={() => onNavigate('privacy')} className="hover:text-white transition cursor-pointer">
+              隱私政策
             </button>
-
-            <button onClick={() => setLegalPage('terms')}>
-            服務條款 Terms of Service
+            <button onClick={() => onNavigate('terms')} className="hover:text-white transition cursor-pointer">
+              服務條款
             </button>
-
-            <button onClick={() => setLegalPage('independence')}>
-          非中介獨立性聲明
+            <button onClick={() => onNavigate('independence')} className="hover:text-white transition cursor-pointer">
+              非中介獨立性聲明
             </button>
           </div>
         </div>
