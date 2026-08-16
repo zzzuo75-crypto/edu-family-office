@@ -1,4 +1,4 @@
-export type NavSection = 'home' | 'approach' | 'services' | 'insights' | 'about' | 'faq' | 'consultation';
+export type NavSection = 'home' | 'approach' | 'services' | 'insights' | 'about' | 'faq' | 'consultation' | 'privacy' | 'terms' | 'independence';
 
 export interface EducationAsset {
   id: string;
