@@ -11,6 +11,10 @@ import { FAQSection } from './components/FAQSection';
 import { ClosingCtaSection } from './components/ClosingCtaSection';
 import { ConsultationModal } from './components/ConsultationModal';
 import { Footer } from './components/Footer';
+import {
+  LegalPages,
+  LegalPageType,
+} from './components/LegalPages';
 
 export function App() {
   const [currentSection, setCurrentSection] = useState<NavSection>('home');
@@ -43,6 +47,7 @@ export function App() {
     setIsPlayingIntro(false);
     setForcePlayIntro(false);
   };
+  const [legalPage, setLegalPage] = useState<LegalPageType | null>(null);
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#172821] flex flex-col font-sans selection:bg-[#EAE0D0] selection:text-[#0E3B2E]">
