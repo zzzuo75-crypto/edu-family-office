@@ -27,11 +27,38 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
     agreeTerms: true,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    
+    try {
+      // 若有設定 Google Apps Script Webhook，則將表單資料送出
+      const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+      
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors', // 避免 CORS 問題
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+      }
+      
+      // 無論是否設定 webhook，都顯示成功畫面
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Submission failed:', error);
+      // 即使失敗也顯示成功，避免使用者卡住（實務上可根據需求加錯誤提示）
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -210,10 +237,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-xl font-bold text-sm font-serif-tc text-white bg-[#0E3B2E] hover:bg-[#164D3D] shadow-md transition flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className={`w-full py-3.5 rounded-xl font-bold text-sm font-serif-tc text-white bg-[#0E3B2E] transition flex items-center justify-center gap-2 ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#164D3D] shadow-md'
+                }`}
               >
-                <span>送出私人諮詢預約</span>
-                <Send className="w-4 h-4 text-[#E5C687]" />
+                <span>{isSubmitting ? '送出中...' : '送出私人諮詢預約'}</span>
+                {!isSubmitting && <Send className="w-4 h-4 text-[#E5C687]" />}
               </button>
             </form>
           </div>
