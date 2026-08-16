@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Hero } from './Hero';
 import { APPROACH_PILLARS, SERVICES_LIST, TARGET_FAMILIES, COMPARISON_TABLE } from '../data/eduData';
 import { SevenAssetsCircularLayout } from './SevenAssetsCircularLayout';
+import { ServicesFlipCards } from './ServicesFlipCards';
 import { SevenStepsCircularWorkflow } from './SevenStepsCircularWorkflow';
 import { DeliverablesFlipCards } from './DeliverablesFlipCards';
 import { ClosingCtaSection } from './ClosingCtaSection';
@@ -172,55 +173,7 @@ export const HomeStreamlined: React.FC<HomeStreamlinedProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {SERVICES_LIST.slice(0, 5).map((srv, idx) => (
-              <div
-                key={srv.id}
-                className="bg-white rounded-3xl border border-[#DFCDB4] p-6 shadow-lux hover:border-[#C5A059] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-cinzel text-[#C5A059] font-bold">
-                      SERVICE 0{idx + 1}
-                    </span>
-                    <span className="text-[10px] font-cinzel px-2 py-0.5 rounded-full bg-[#F3EDE2] text-[#0E3B2E]">
-                      {srv.enTitle.split(' ')[0]}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold font-serif-tc text-[#0E3B2E] mb-1">
-                    {srv.title}
-                  </h3>
-
-                  <div className="p-3 bg-[#FAF8F5] border-l-2 border-[#C5A059] rounded-r-xl my-3">
-                    <p className="text-xs font-serif-tc font-bold text-[#0E3B2E] line-clamp-2">
-                      「{srv.quote}」
-                    </p>
-                  </div>
-
-                  <p className="text-xs text-[#526058] font-serif-tc leading-relaxed mb-4">
-                    {srv.summary}
-                  </p>
-
-                  <ul className="space-y-1.5 text-xs font-serif-tc text-[#3E4D45] pt-2 border-t border-[#E8E0D2]">
-                    {srv.details.slice(0, 3).map((d, i) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0E3B2E] shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{d}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-[#E8E0D2] text-[11px] font-serif-tc text-[#0E3B2E] font-medium flex items-center justify-between">
-                  <span className="text-[#8A7963]">核心交付物：</span>
-                  <span className="text-[#0E3B2E] font-bold truncate max-w-[170px]">
-                    {srv.deliverables?.[0] || '專屬策略報告'}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ServicesFlipCards />
         </div>
 
         {/* Part B: 七步驟管理流程 */}
