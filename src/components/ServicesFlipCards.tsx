@@ -72,7 +72,7 @@ export const ServicesFlipCards: React.FC = () => {
           return (
             <div
               key={srv.id}
-              className="relative h-[440px] w-full cursor-pointer select-none [perspective:1000px] group"
+             className="relative h-[500px] sm:h-[480px] lg:h-[460px] w-full cursor-pointer select-none [perspective:1000px] group"
               onClick={() => toggleFlip(index)}
               role="button"
               tabIndex={0}
@@ -140,7 +140,7 @@ export const ServicesFlipCards: React.FC = () => {
 
                 {/* ================= CARD BACK (翻面內容) ================= */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
+               className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)] p-5 sm:p-7 flex flex-col justify-between overflow-y-auto shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
                   style={{
                     background: 'linear-gradient(155deg, #0E3B2E 0%, #08261E 100%)',
                   }}
