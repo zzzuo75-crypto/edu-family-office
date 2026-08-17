@@ -51,7 +51,8 @@ export function ServicesFlipCards() {
             return (
               <div
                 key={srv.id}
-                className="relative h-[440px] w-full cursor-pointer select-none [perspective:1000px] group"
+                // 這裡稍微加高到 480px，給內容多一點呼吸空間
+                className="relative h-[480px] w-full cursor-pointer select-none [perspective:1000px] group"
                 onClick={() => toggleFlip(index)}
                 role="button"
                 tabIndex={0}
@@ -71,7 +72,7 @@ export function ServicesFlipCards() {
                   
                   {/* ================= CARD FRONT (封面) ================= */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4] bg-white"
+                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [-webkit-backface-visibility:hidden] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4] bg-white"
                   >
                     <div className="absolute -right-6 -bottom-6 opacity-[0.04] text-[#0E3B2E] pointer-events-none">
                       <EduTreeMark size={200} />
@@ -118,8 +119,9 @@ export function ServicesFlipCards() {
                   </div>
 
                   {/* ================= CARD BACK (翻面內容) ================= */}
+                  {/* 這裡加入了 overflow-y-auto 與隱藏捲動條的設定 [&::-webkit-scrollbar]:hidden */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
+                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] p-6 sm:p-7 flex flex-col justify-between overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
                     style={{
                       background: 'linear-gradient(155deg, #0E3B2E 0%, #08261E 100%)',
                     }}
