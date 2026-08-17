@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, RotateCw } from 'lucide-react';
 import { SERVICES_LIST } from '../data/eduData';
 
-// 簡單的 Logo icon 作為卡片背景點綴
 function EduTreeMark({ size = 48, className = "" }: { size?: number, className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -29,7 +28,6 @@ export function ServicesFlipCards() {
 
   return (
     <div className="w-full">
-      {/* 頂部操作列：提供全部翻回正面的功能 */}
       <div className="flex justify-center mb-10 gap-4">
         <button
           onClick={handleFlipAllFront}
@@ -53,8 +51,7 @@ export function ServicesFlipCards() {
             return (
               <div
                 key={srv.id}
-                // 在這裡我們將高度改為響應式：手機版給予 500px，電腦版縮回 460px
-                className="relative h-[500px] sm:h-[480px] lg:h-[460px] w-full cursor-pointer select-none [perspective:1000px] group"
+                className="relative h-[440px] w-full cursor-pointer select-none [perspective:1000px] group"
                 onClick={() => toggleFlip(index)}
                 role="button"
                 tabIndex={0}
@@ -73,9 +70,8 @@ export function ServicesFlipCards() {
                 >
                   
                   {/* ================= CARD FRONT (封面) ================= */}
-                  {/* 注意：這裡加上了 [-webkit-backface-visibility:hidden] 專門修復 iOS Safari 的 bug */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [-webkit-backface-visibility:hidden] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4] bg-white"
+                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4] bg-white"
                   >
                     <div className="absolute -right-6 -bottom-6 opacity-[0.04] text-[#0E3B2E] pointer-events-none">
                       <EduTreeMark size={200} />
@@ -122,9 +118,8 @@ export function ServicesFlipCards() {
                   </div>
 
                   {/* ================= CARD BACK (翻面內容) ================= */}
-                  {/* 注意：這裡同樣加上了 [-webkit-backface-visibility:hidden] 以及 overflow-y-auto */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] p-5 sm:p-7 flex flex-col justify-between overflow-y-auto shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
+                    className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
                     style={{
                       background: 'linear-gradient(155deg, #0E3B2E 0%, #08261E 100%)',
                     }}
