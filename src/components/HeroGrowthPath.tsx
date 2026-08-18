@@ -63,7 +63,7 @@ export const HeroGrowthPath: React.FC = () => {
       <div className="relative z-10 flex items-center justify-between">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-[#C5A059]/30 text-white text-xs font-serif-tc">
           <span className="text-[#E5C687]">🌿</span>
-          <span className="tracking-wider">學涯成長路徑隱喻</span>
+          <span className="tracking-wider">學涯成長路徑</span>
           <span className="text-white/40">•</span>
           <span className="text-[#E5C687] font-cinzel text-[10px]">ROADMAP MATRIX</span>
         </div>
