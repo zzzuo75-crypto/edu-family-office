@@ -85,10 +85,12 @@ export const DeliverablesFlipCards: React.FC = () => {
           return (
             <div
               key={index}
-              className="relative h-[380px] sm:h-[400px] w-full cursor-pointer select-none [perspective:1000px] group"
+              className="flip-card relative h-[340px] sm:h-[360px] w-full cursor-pointer select-none group"
+              data-flipped={isFlipped}
               onClick={() => toggleFlip(index)}
               role="button"
               tabIndex={0}
+              aria-pressed={isFlipped}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -99,14 +101,15 @@ export const DeliverablesFlipCards: React.FC = () => {
             >
               {/* Inner 3D Flip Container */}
               <motion.div
-                className="w-full h-full relative [transform-style:preserve-3d] rounded-3xl"
+                className="flip-card-inner w-full h-full relative rounded-3xl"
+                initial={false}
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
               >
                 
                 {/* ================= CARD FRONT (封面) ================= */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4]"
+                  className="flip-card-face flip-card-front absolute inset-0 w-full h-full rounded-3xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 group-hover:shadow-lux-lg border border-[#DFCDB4]"
                   style={{
                     background: 'linear-gradient(145deg, #FAF8F5 0%, #F5EFE4 100%)',
                   }}
@@ -159,7 +162,7 @@ export const DeliverablesFlipCards: React.FC = () => {
 
                 {/* ================= CARD BACK (翻面內容) ================= */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
+                  className="flip-card-face flip-card-back absolute inset-0 w-full h-full rounded-3xl p-5 sm:p-6 flex flex-col justify-between overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] shadow-lux transition-all duration-300 border border-[#C5A059]/40 bg-[#0E3B2E] text-white"
                   style={{
                     background: 'linear-gradient(155deg, #0E3B2E 0%, #08261E 100%)',
                   }}

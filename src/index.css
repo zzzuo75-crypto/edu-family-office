@@ -50,3 +50,64 @@
   color: #0E3B2E;
 }
 
+/* Cross-browser flip cards. Explicit WebKit properties prevent Safari from
+   painting the hidden face through the card during a desktop 3D rotation. */
+.flip-card {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  isolation: isolate;
+}
+
+.flip-card-inner {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.flip-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: flat;
+  -webkit-transform-style: flat;
+}
+
+.flip-card-front {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+/* Mobile Safari can composite both 3D faces at once when a face contains
+   scrolling content. Use a clean face swap on phones so text never mirrors. */
+@media (max-width: 767px) {
+  .flip-card-inner {
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+
+  .flip-card-face {
+    transform: none;
+    -webkit-transform: none;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transition: opacity 180ms ease, visibility 180ms ease;
+  }
+
+  .flip-card[data-flipped='false'] .flip-card-back,
+  .flip-card[data-flipped='true'] .flip-card-front {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .flip-card[data-flipped='false'] .flip-card-front,
+  .flip-card[data-flipped='true'] .flip-card-back {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
